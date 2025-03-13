@@ -20,6 +20,9 @@ const Navbar = () => {
         <a href="/pokemons" className="text-white font-bold text-lg drop-shadow-md hover:text-yellow-300 transition duration-300">
           Pokemons
         </a>
+        <a href="/favorites" className="text-white font-bold text-lg drop-shadow-md hover:text-yellow-300 transition duration-300">
+          Favoritos
+        </a>
       </div>
       <div className="flex space-x-2">
         <input
