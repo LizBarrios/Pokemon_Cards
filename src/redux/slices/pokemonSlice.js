@@ -16,6 +16,7 @@ const pokemonSlice = createSlice({
   initialState: {
     allPokemons: [], // Todos los Pokémon originales
     pokemons: [], // Lista filtrada que se muestra
+    favorites: [], // Lista de Pokémon favoritos
     status: "idle",
   },
   reducers: {
@@ -28,6 +29,15 @@ const pokemonSlice = createSlice({
           (p) =>
             p.name.includes(searchTerm) || p.id.toString() === searchTerm
         );
+      }
+    },
+    toggleFavorite: (state, action) => {
+      const pokemon = action.payload;
+      const isFavorite = state.favorites.some(fav => fav.id === pokemon.id);
+      if (isFavorite) {
+        state.favorites = state.favorites.filter(fav => fav.id !== pokemon.id);
+      } else {
+        state.favorites.push(pokemon);
       }
     },
   },
@@ -47,5 +57,5 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const { searchPokemon } = pokemonSlice.actions;
+export const { searchPokemon, toggleFavorite } = pokemonSlice.actions;
 export default pokemonSlice.reducer;
